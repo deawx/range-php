@@ -38,11 +38,11 @@ trait RangeTrait
     }
 
     /**
-     * @return float|int
+     * @return int
      */
-    public function count()
+    public function count(): int
     {
-        return $this->size ?? INF;
+        return $this->size ?? -1;
     }
 
     /**

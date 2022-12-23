@@ -106,7 +106,7 @@ class IntRangeTest extends Unit
     public function testInfinite()
     {
         $range = new IntRange(1, null, 2);
-        $this->assertEquals(INF, $range->count());
+        $this->assertEquals(-1, $range->count());
         $this->assertTrue($range->isInfinite());
         $this->assertEquals(1, $range[0]);
         $this->assertEquals(3, $range[1]);

@@ -32,7 +32,8 @@ trait RangeIteratorTrait
      */
     public function valid(): bool
     {
-        return $this->currentIndex >= 0 && $this->currentIndex < $this->range->count();
+        $count = $this->range->isInfinite() ? INF : $this->range->count();
+        return $this->currentIndex >= 0 && $this->currentIndex < $count;
     }
 
     /**
