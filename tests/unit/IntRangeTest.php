@@ -14,25 +14,16 @@ class IntRangeTest extends Unit
         $range = new IntRange(0, 3, 1);
         $this->assertCount(3, $range);
         $this->assertFalse($range->isInfinite());
+
         $this->assertEquals(0, $range[0]);
         $this->assertEquals(1, $range[1]);
         $this->assertEquals(2, $range[2]);
+        $this->checkIsOffsetOutOfRange($range, 3);
 
         $this->assertEquals(2, $range[-1]);
         $this->assertEquals(1, $range[-2]);
         $this->assertEquals(0, $range[-3]);
-        $this->assertEquals(2, $range[-4]);
-        $this->assertEquals(1, $range[-5]);
-        $this->assertEquals(0, $range[-6]);
-        $this->assertEquals(2, $range[-7]);
-
-        $this->assertEquals(0, $range[3]);
-        $this->assertEquals(1, $range[4]);
-        $this->assertEquals(2, $range[5]);
-        $this->assertEquals(0, $range[6]);
-        $this->assertEquals(1, $range[7]);
-        $this->assertEquals(2, $range[8]);
-        $this->assertEquals(0, $range[9]);
+        $this->checkIsOffsetOutOfRange($range, -4);
 
         $this->checkIsOffsetOutOfRange($range, null);
         $this->checkIsOffsetOutOfRange($range, 'test');
@@ -61,25 +52,16 @@ class IntRangeTest extends Unit
         $range = new IntRange(1, 3, 2);
         $this->assertCount(3, $range);
         $this->assertFalse($range->isInfinite());
+
         $this->assertEquals(1, $range[0]);
         $this->assertEquals(3, $range[1]);
         $this->assertEquals(5, $range[2]);
+        $this->checkIsOffsetOutOfRange($range, 3);
 
         $this->assertEquals(5, $range[-1]);
         $this->assertEquals(3, $range[-2]);
         $this->assertEquals(1, $range[-3]);
-        $this->assertEquals(5, $range[-4]);
-        $this->assertEquals(3, $range[-5]);
-        $this->assertEquals(1, $range[-6]);
-        $this->assertEquals(5, $range[-7]);
-
-        $this->assertEquals(1, $range[3]);
-        $this->assertEquals(3, $range[4]);
-        $this->assertEquals(5, $range[5]);
-        $this->assertEquals(1, $range[6]);
-        $this->assertEquals(3, $range[7]);
-        $this->assertEquals(5, $range[8]);
-        $this->assertEquals(1, $range[9]);
+        $this->checkIsOffsetOutOfRange($range, -4);
 
         $this->checkIsOffsetOutOfRange($range, null);
         $this->checkIsOffsetOutOfRange($range, 'test');

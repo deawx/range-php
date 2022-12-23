@@ -39,13 +39,19 @@ var_dump($range[0]); // 1
 var_dump($range[1]); // 3
 var_dump($range[2]); // 5
 
-var_dump($range[4]); // 1
-var_dump($range[5]); // 3
-var_dump($range[6]); // 5
+try {
+    $range[3];
+} catch(OutOfRangeException $e) {
+}
 
 var_dump($range[-1]); // 5
 var_dump($range[-2]); // 3
 var_dump($range[-3]); // 1
+
+try {
+    $range[-4];
+} catch(OutOfRangeException $e) {
+}
 
 /* Infinite int range */
 $range = new IntRange(1, null, 2);

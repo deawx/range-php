@@ -17,22 +17,12 @@ class FloatRangeTest extends Unit
         $this->assertEquals(0, round($range[0], 2));
         $this->assertEquals(1, round($range[1], 2));
         $this->assertEquals(2, round($range[2], 2));
+        $this->checkIsOffsetOutOfRange($range, 3);
 
         $this->assertEquals(2, round($range[-1], 2));
         $this->assertEquals(1, round($range[-2], 2));
         $this->assertEquals(0, round($range[-3], 2));
-        $this->assertEquals(2, round($range[-4], 2));
-        $this->assertEquals(1, round($range[-5], 2));
-        $this->assertEquals(0, round($range[-6], 2));
-        $this->assertEquals(2, round($range[-7], 2));
-
-        $this->assertEquals(0, round($range[3], 2));
-        $this->assertEquals(1, round($range[4], 2));
-        $this->assertEquals(2, round($range[5], 2));
-        $this->assertEquals(0, round($range[6], 2));
-        $this->assertEquals(1, round($range[7], 2));
-        $this->assertEquals(2, round($range[8], 2));
-        $this->assertEquals(0, round($range[9], 2));
+        $this->checkIsOffsetOutOfRange($range, -4);
 
         $this->checkIsOffsetOutOfRange($range, null);
         $this->checkIsOffsetOutOfRange($range, 'test');
@@ -61,25 +51,16 @@ class FloatRangeTest extends Unit
         $range = new FloatRange(1.1, 3, 2.1);
         $this->assertCount(3, $range);
         $this->assertFalse($range->isInfinite());
+
         $this->assertEquals(1.1, round($range[0], 2));
         $this->assertEquals(3.2, round($range[1], 2));
         $this->assertEquals(5.3, round($range[2], 2));
+        $this->checkIsOffsetOutOfRange($range, 3);
 
         $this->assertEquals(5.3, round($range[-1], 2));
         $this->assertEquals(3.2, round($range[-2], 2));
         $this->assertEquals(1.1, round($range[-3], 2));
-        $this->assertEquals(5.3, round($range[-4], 2));
-        $this->assertEquals(3.2, round($range[-5], 2));
-        $this->assertEquals(1.1, round($range[-6], 2));
-        $this->assertEquals(5.3, round($range[-7], 2));
-
-        $this->assertEquals(1.1, round($range[3], 2));
-        $this->assertEquals(3.2, round($range[4], 2));
-        $this->assertEquals(5.3, round($range[5], 2));
-        $this->assertEquals(1.1, round($range[6], 2));
-        $this->assertEquals(3.2, round($range[7], 2));
-        $this->assertEquals(5.3, round($range[8], 2));
-        $this->assertEquals(1.1, round($range[9], 2));
+        $this->checkIsOffsetOutOfRange($range, -4);
 
         $this->checkIsOffsetOutOfRange($range, null);
         $this->checkIsOffsetOutOfRange($range, 'test');
@@ -105,6 +86,7 @@ class FloatRangeTest extends Unit
         $range = new FloatRange(1, null, 2);
         $this->assertEquals(-1, $range->count());
         $this->assertTrue($range->isInfinite());
+
         $this->assertEquals(1, $range[0]);
         $this->assertEquals(3, $range[1]);
         $this->assertEquals(5, $range[2]);

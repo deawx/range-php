@@ -15,7 +15,18 @@ trait RangeTrait
      */
     public function offsetExists($offset): bool
     {
-        return is_int($offset);
+        if(!is_int($offset)) {
+            return false;
+        }
+
+        if(!$this->isInfinite()) {
+            if($offset >= 0) {
+                return $offset < count($this);
+            }
+            return abs($offset) <= count($this);
+        }
+
+        return true;
     }
 
     /**
