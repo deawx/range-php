@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Smoren\Range\Iterators;
 
 use Smoren\Range\Interfaces\RangeIteratorInterface;

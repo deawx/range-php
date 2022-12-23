@@ -23,5 +23,46 @@ composer test
 ### Usage
 
 ```php
-// TODO
+use Smoren\Range\Structs\IntRange;
+use Smoren\Range\Structs\FloatRange;
+
+/* Simple int range */
+$range = new IntRange(1, 3, 2); // (from, size, step)
+var_dump($range->isInfinite()); // false
+
+foreach($range as $value) {
+    echo "{$value} ";
+}
+// out: 1 3 5
+
+var_dump($range[0]); // 1
+var_dump($range[1]); // 3
+var_dump($range[2]); // 5
+
+var_dump($range[4]); // 1
+var_dump($range[5]); // 3
+var_dump($range[6]); // 5
+
+var_dump($range[-1]); // 5
+var_dump($range[-2]); // 3
+var_dump($range[-3]); // 1
+
+/* Infinite int range */
+$range = new IntRange(1, null, 2);
+var_dump($range->isInfinite()); // true
+
+foreach($range as $i => $value) {
+    echo "{$value} ";
+    if($i > 100) break;
+}
+// out: 1 3 5 7 9 11 13...
+
+/* Float range */
+$range = new FloatRange(1.1, 3, 2.1);
+var_dump($range->isInfinite()); // false
+
+foreach($range as $value) {
+    echo "{$value} ";
+}
+// out: 1.1 3.2 5.3
 ```
