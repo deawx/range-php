@@ -22,6 +22,8 @@ composer test
 
 ### Usage
 
+#### Ranges
+
 ```php
 use Smoren\Range\Structs\IntRange;
 use Smoren\Range\Structs\FloatRange;
@@ -51,6 +53,7 @@ var_dump($range[-3]); // 1
 try {
     $range[-4];
 } catch(OutOfRangeException $e) {
+    echo "cannot get value from index out of range\n";
 }
 
 /* Infinite int range */
@@ -71,4 +74,43 @@ foreach($range as $value) {
     echo "{$value} ";
 }
 // out: 1.1 3.2 5.3
+```
+
+#### IndexedArray
+
+```php
+use Smoren\Range\Structs\IndexedArray;
+use Smoren\Range\Exceptions\OutOfRangeException;
+
+$array = new IndexedArray([10, 20, 30]);
+
+$array[0] = 11;
+$array[-1] = 33;
+$array[1] = 22;
+var_dump(count($array)); // 3
+print_r($array->toArray()); // [11, 22, 33]
+
+unset($array[1]);
+print_r($array->toArray()); // [11, 33]
+
+$array[] = 111;
+print_r($array->toArray()); // [11, 33, 111]
+
+try {
+    $array[3];
+} catch(OutOfRangeException $e) {
+    echo "cannot get value from index out of range\n";
+}
+
+try {
+    $array[3] = 1;
+} catch(OutOfRangeException $e) {
+    echo "cannot set value from index out of range\n";
+}
+
+try {
+    unset($array[3]);
+} catch(OutOfRangeException $e) {
+    echo "cannot unset value from index out of range\n";
+}
 ```

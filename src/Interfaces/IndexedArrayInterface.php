@@ -8,19 +8,25 @@ use ArrayAccess;
 use Countable;
 use IteratorAggregate;
 use Smoren\Range\Exceptions\OutOfRangeException;
-use Smoren\Range\Exceptions\ReadOnlyException;
+use Smoren\Range\Iterators\IndexedArrayIterator;
+use Smoren\Range\Structs\IntRange;
 
 /**
  * @template T
  * @extends ArrayAccess<int, T>
  * @extends IteratorAggregate<int, T>
  */
-interface RangeInterface extends ArrayAccess, Countable, IteratorAggregate
+interface IndexedArrayInterface extends ArrayAccess, Countable, IteratorAggregate
 {
     /**
-     * @return bool
+     * @return IntRange
      */
-    public function isInfinite(): bool;
+    public function getRange(): IntRange;
+
+    /**
+     * @return IndexedArrayIterator<T>
+     */
+    public function getIterator(): IndexedArrayIterator;
 
     /**
      * @param int|mixed $offset
@@ -29,7 +35,7 @@ interface RangeInterface extends ArrayAccess, Countable, IteratorAggregate
     public function offsetExists($offset): bool;
 
     /**
-     * @param int|mixed $offset
+     * @param int $offset
      * @return T
      * @throws OutOfRangeException
      */
@@ -37,10 +43,9 @@ interface RangeInterface extends ArrayAccess, Countable, IteratorAggregate
     public function offsetGet($offset);
 
     /**
-     * @param int|null|mixed $offset
+     * @param int|null $offset
      * @param T $value
      * @return void
-     * @throws ReadOnlyException
      * @throws OutOfRangeException
      */
     public function offsetSet($offset, $value): void;
@@ -48,7 +53,6 @@ interface RangeInterface extends ArrayAccess, Countable, IteratorAggregate
     /**
      * @param int|mixed $offset
      * @return void
-     * @throws ReadOnlyException
      * @throws OutOfRangeException
      */
     public function offsetUnset($offset): void;
@@ -57,4 +61,9 @@ interface RangeInterface extends ArrayAccess, Countable, IteratorAggregate
      * @return int
      */
     public function count(): int;
+
+    /**
+     * @return array<T>
+     */
+    public function toArray(): array;
 }

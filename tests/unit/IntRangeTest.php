@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Smoren\Range\Tests\Unit;
 
 use Codeception\Test\Unit;

@@ -6,12 +6,15 @@ namespace Smoren\Range\Traits;
 
 use Smoren\Range\Exceptions\OutOfRangeException;
 use Smoren\Range\Exceptions\ReadOnlyException;
+use Smoren\Range\Interfaces\RangeInterface;
 
+/**
+ * @implements RangeInterface<mixed>
+ */
 trait RangeTrait
 {
     /**
-     * @param int|mixed $offset
-     * @return bool
+     * {@inheritDoc}
      */
     public function offsetExists($offset): bool
     {
@@ -30,10 +33,7 @@ trait RangeTrait
     }
 
     /**
-     * @param int|mixed $offset
-     * @param mixed $value
-     * @return void
-     * @throws ReadOnlyException
+     * {@inheritDoc}
      */
     public function offsetSet($offset, $value): void
     {
@@ -41,9 +41,7 @@ trait RangeTrait
     }
 
     /**
-     * @param int|mixed $offset
-     * @return void
-     * @throws ReadOnlyException
+     * {@inheritDoc}
      */
     public function offsetUnset($offset): void
     {
@@ -51,11 +49,19 @@ trait RangeTrait
     }
 
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public function count(): int
     {
         return $this->size ?? -1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isInfinite(): bool
+    {
+        return $this->size === null;
     }
 
     /**
@@ -78,13 +84,5 @@ trait RangeTrait
         }
 
         return $this->start + ($offset % $this->size) * $this->step;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isInfinite(): bool
-    {
-        return $this->size === null;
     }
 }

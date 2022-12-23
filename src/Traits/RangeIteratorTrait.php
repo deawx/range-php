@@ -6,15 +6,17 @@ namespace Smoren\Range\Traits;
 
 use ArrayAccess;
 use Countable;
+use Smoren\Range\Interfaces\RangeIteratorInterface;
 
 /**
+ * @implements RangeIteratorInterface<mixed>
  * @property ArrayAccess<int, int|float>|Countable $range
  * @property int $currentIndex
  */
 trait RangeIteratorTrait
 {
     /**
-     * @return void
+     * {@inheritDoc}
      */
     public function next(): void
     {
@@ -22,7 +24,7 @@ trait RangeIteratorTrait
     }
 
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public function key(): int
     {
@@ -30,7 +32,7 @@ trait RangeIteratorTrait
     }
 
     /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function valid(): bool
     {
@@ -39,7 +41,7 @@ trait RangeIteratorTrait
     }
 
     /**
-     * @return void
+     * {@inheritDoc}
      */
     public function rewind(): void
     {

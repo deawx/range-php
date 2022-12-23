@@ -42,9 +42,8 @@ class IntRange implements RangeInterface
     }
 
     /**
-     * @param int|mixed $offset
+     * {@inheritDoc}
      * @return int
-     * @throws OutOfRangeException
      */
     public function offsetGet($offset): int
     {
@@ -52,7 +51,7 @@ class IntRange implements RangeInterface
     }
 
     /**
-     * @return IntRangeIterator
+     * {@inheritDoc}
      */
     public function getIterator(): IntRangeIterator
     {

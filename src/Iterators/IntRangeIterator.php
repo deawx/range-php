@@ -15,9 +15,18 @@ class IntRangeIterator implements RangeIteratorInterface
 {
     use RangeIteratorTrait;
 
+    /**
+     * @var IntRange
+     */
     protected IntRange $range;
+    /**
+     * @var int
+     */
     protected int $currentIndex;
 
+    /**
+     * @param IntRange $range
+     */
     public function __construct(IntRange $range)
     {
         $this->range = $range;
@@ -25,6 +34,7 @@ class IntRangeIterator implements RangeIteratorInterface
     }
 
     /**
+     * {@inheritDoc}
      * @return int
      */
     public function current(): int

@@ -15,9 +15,18 @@ class FloatRangeIterator implements RangeIteratorInterface
 {
     use RangeIteratorTrait;
 
+    /**
+     * @var FloatRange
+     */
     protected FloatRange $range;
+    /**
+     * @var int
+     */
     protected int $currentIndex;
 
+    /**
+     * @param FloatRange $range
+     */
     public function __construct(FloatRange $range)
     {
         $this->range = $range;
@@ -25,6 +34,7 @@ class FloatRangeIterator implements RangeIteratorInterface
     }
 
     /**
+     * {@inheritDoc}
      * @return float
      */
     public function current(): float

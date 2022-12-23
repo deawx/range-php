@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Smoren\Range\Structs;
 
+use Smoren\Range\Exceptions\OutOfRangeException;
 use Smoren\Range\Iterators\FloatRangeIterator;
 use Smoren\Range\Traits\RangeTrait;
-use Smoren\Range\Exceptions\OutOfRangeException;
 use Smoren\Range\Interfaces\RangeInterface;
 
 /**
@@ -42,9 +42,8 @@ class FloatRange implements RangeInterface
     }
 
     /**
-     * @param int|mixed $offset
+     * {@inheritDoc}
      * @return float
-     * @throws OutOfRangeException
      */
     public function offsetGet($offset): float
     {
@@ -52,7 +51,7 @@ class FloatRange implements RangeInterface
     }
 
     /**
-     * @return FloatRangeIterator
+     * {@inheritDoc}
      */
     public function getIterator(): FloatRangeIterator
     {
